@@ -14,6 +14,7 @@ var DB_CONN = (process.env.DB_USER) ?
     ('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PWD + '@' + process.env.DB_URL + ':' + process.env.DB_PORT + '/' + process.env.DB_NAME) :
     ('mongodb://' + process.env.DB_URL + ':' + process.env.DB_PORT + '/' + process.env.DB_NAME);
 
+console.log('DB_CONN');
 mongoose.connect(DB_CONN);
 
 var Schema = mongoose.Schema;
@@ -42,7 +43,7 @@ app.get('/:shorturl', function (req, res) {
 });
 
 app.get('/new/*', function (req, res) {
-
+    console.log(req.params[0]);
     if (!validator.isURL(req.params[0], { require_protocol: true })) {
         res.json({
             original_url: null,
