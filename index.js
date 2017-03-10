@@ -64,7 +64,7 @@ app.get('/new/*', function (req, res) {
                     else {
                         res.json({
                             original_url: resp.original_url,
-                            short_url: URL + PORT + '/' + resp.short_url
+                            short_url: URL + '/' + resp.short_url
                         });
                     }
                 });
@@ -72,20 +72,13 @@ app.get('/new/*', function (req, res) {
             } else {
                 res.json({
                     original_url: response[0].original_url,
-                    short_url: URL + PORT + '/' + response[0].short_url
+                    short_url: URL + '/' + response[0].short_url
                 });
             }
         })
     }
 
 });
-
-
-
-
-
-
-
 
 app.listen(PORT, function () {
     console.log('Listening on Port: ' + PORT);
