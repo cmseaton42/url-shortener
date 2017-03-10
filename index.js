@@ -25,6 +25,10 @@ urlSchema.plugin(mongooseSequence, { inc_field: "short_url" });
 
 var ShortURL = mongoose.model("ShortURL", urlSchema);
 
+app.get('/', function(req, res) {
+    res.send("URL Shortener Landing Page");
+});
+
 app.get('/:shorturl', function (req, res) {
     if (validator.isInt(req.params.shorturl)) {
         ShortURL.find({ short_url: req.params.shorturl }, function (err, response) {
@@ -44,6 +48,7 @@ app.get('/:shorturl', function (req, res) {
 
 app.get('/new/*', function (req, res) {
     console.log(req.params[0]);
+
     if (!validator.isURL(req.params[0], { require_protocol: true })) {
         res.json({
             original_url: null,
